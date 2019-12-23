@@ -8,22 +8,48 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      query: null,
-      filterOptions: "All",
-      printType: ""
+      query: "popular",
+      printType: "All",
+      bookType: "No filter",
+      books: "",
+      error: "",
 
     }
   }
 
+  updateSearch(term) {
+    this.setState({
+      query: term
+    })
+  }
+
+  updatePrintType(print) {
+    this.setState({
+      printType: print
+    })
+  }
+
+  updateBookType(type) {
+    this.setState({
+      bookType: type
+    })
+  }
+
   componentDidMount() {
-    const url = 'https://www.googleapis.com/books/v1/volumes?q=popular';
-    fetch('https://www.googleapis.com/books/v1/volumes?q=popular')
+    const baseUrl = 'https://www.googleapis.com/books/v1/volumes?q=';
+    const url = (`${baseUrl}${this.state.query}`)
+    console.log(url)
+    fetch(url)
       .then(response => response.json())
       .then(data => {
-        const books = data.items
-        const books2 = data.items[0].volumeInfo
-        console.log(books)
+        const books2 = data.items[0].volumeInfo.title
         console.log(books2)
+        this.setState({
+          books: data.items,
+          error: null
+        })
+        console.log(this.state)
+        
              
       });
     }
@@ -37,7 +63,13 @@ class App extends Component {
       <main className='App'>
         <h1>Google Book Search</h1>
         <div>
-          <Search />
+          <Search
+            searchTerm={this.state.query}
+            printType={this.state.printType}
+            bookType={this.state.bookType}
+            handleSearch={term=>this.updateSearch(term)}
+            handlePrintFilter={print=>this.updatePrintType(print)}
+            handleTypeFilter={type=>this.updateBookType(type)} />
           <Results />
 
         </div>

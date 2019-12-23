@@ -2,13 +2,14 @@ import React, {Component} from 'react';
 
 class Filter extends Component {
     render() {
+        console.log(this.props)
         return(
             <div>
             <label htmlFor="print type">Print Type:</label>
                 <select
                     id="print type"
                     name="print type">
-                    // onChange={e => this.changeSelection(e.target.value)}>
+                    {/* // onChange={e => this.changeSelection(e.target.value)}> */}
                     <option value="None">Select one...</option>
                     {/* {options} */}
                 </select>
@@ -16,7 +17,7 @@ class Filter extends Component {
                 <select
                     id="book type"
                     name="book type">
-                    // onChange={e => this.changeSelection(e.target.value)}>
+                    {/* // onChange={e => this.changeSelection(e.target.value)}> */}
                     <option value="None">Select one...</option>
                     {/* {options} */}
                 </select>
