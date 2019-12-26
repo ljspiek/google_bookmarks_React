@@ -8,7 +8,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      query: "popular",
+      query: "react",
       printType: "All",
       bookType: "No filter",
       books: "",
@@ -70,7 +70,8 @@ class App extends Component {
             handleSearch={term=>this.updateSearch(term)}
             handlePrintFilter={print=>this.updatePrintType(print)}
             handleTypeFilter={type=>this.updateBookType(type)} />
-          <Results />
+          <Results
+            books={this.state.books} />
 
         </div>
       </main>

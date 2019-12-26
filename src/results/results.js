@@ -2,8 +2,7 @@ import React, {Component} from 'react';
 
 class Results extends Component {
     render() {
-        // const results = this
-        //         .props
+        console.log(this.props)
 
         return(
             <div className="resultsList">

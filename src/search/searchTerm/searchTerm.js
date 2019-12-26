@@ -6,8 +6,14 @@ class searchTerm extends Component {
         return(
             <div>
                 Search:
-                <input name="search term" type="text"/>
-                <button>Search</button>
+                <input 
+                placeholder="Search term"
+                value={this.props.searchTerm}
+                // this.state.query updates as typed - check console
+                onChange={e => this.props.handleSearch(e.target.value)}
+                />
+                <button type="submit">Search</button>
+                {/* need to configure button to show results onClick */}
             </div>
         )
     }
