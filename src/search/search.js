@@ -7,11 +7,11 @@ class Search extends Component {
         console.log(this.props)
         return(
             <div>
-                <form>
+                <form onSubmit={this.props.onSubmitForm} action="">
                     <SearchTerm
                         searchTerm={this.props.searchTerm}
                         handleSearch={this.props.handleSearch}
-                        />
+                        onSubmitForm={this.props.onSubmitForm}/>
                     <Filter
                         printType={this.props.printType}
                         bookType={this.props.bookType}

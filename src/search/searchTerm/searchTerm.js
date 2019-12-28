@@ -10,7 +10,7 @@ class searchTerm extends Component {
                 placeholder="Search term"
                 value={this.props.searchTerm}
                 // this.state.query updates as typed - check console
-                onChange={e => this.props.handleSearch(e.target.value)}
+                onChange={this.props.handleSearch}
                 />
                 <button type="submit">Search</button>
                 {/* need to configure button to show results onClick */}

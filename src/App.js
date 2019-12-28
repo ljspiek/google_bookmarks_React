@@ -8,20 +8,24 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      query: "react",
-      printType: "All",
-      bookType: "No filter",
-      books: "",
+      query: "",
+      printType: "all",
+      bookType: "ebooks",
+      books: [],
       error: "",
 
     }
   }
 
-  updateSearch(term) {
-    this.setState({
-      query: term
-    })
+  updateSearch = (e) => {
+    this.setState({query: e.target.value})
   }
+
+  // updateSearch(term) {
+  //   this.setState({
+  //     query: term
+  //   })
+  // }
 
   updatePrintType(print) {
     this.setState({
@@ -35,15 +39,35 @@ class App extends Component {
     })
   }
 
-  componentDidMount() {
-    const baseUrl = 'https://www.googleapis.com/books/v1/volumes?q=';
-    const url = (`${baseUrl}${this.state.query}`)
-    console.log(url)
-    fetch(url)
+  // componentDidMount() {
+  //   const baseUrl = 'https://www.googleapis.com/books/v1/volumes?q=';
+  //   const url = (`${baseUrl}${this.state.query}&bookType=${this.state.bookType}`)
+  //   // console.log(url)
+  //   fetch(url)
+  //     .then(response => response.json())
+  //     .then(data => {
+  //       // const books2 = data.items[0].volumeInfo.title
+  //       // console.log(books2)
+  //       this.setState({
+  //         books: data.items,
+  //         error: null
+  //       })
+  //       console.log(this.state)
+        
+             
+  //     });
+  //   }
+
+    onSubmitForm = (e) => {
+      e.preventDefault();
+      const baseUrl = 'https://www.googleapis.com/books/v1/volumes?q=';
+      const url = (`${baseUrl}${this.state.query}`)
+      fetch(url)
       .then(response => response.json())
       .then(data => {
-        const books2 = data.items[0].volumeInfo.title
-        console.log(books2)
+        // const books2 = data.items[0].volumeInfo.title
+        // console.log(books2)
+        console.log(data)
         this.setState({
           books: data.items,
           error: null
@@ -53,6 +77,7 @@ class App extends Component {
              
       });
     }
+  
 
   
 
@@ -67,9 +92,10 @@ class App extends Component {
             searchTerm={this.state.query}
             printType={this.state.printType}
             bookType={this.state.bookType}
-            handleSearch={term=>this.updateSearch(term)}
+            handleSearch={this.updateSearch}
             handlePrintFilter={print=>this.updatePrintType(print)}
-            handleTypeFilter={type=>this.updateBookType(type)} />
+            handleTypeFilter={type=>this.updateBookType(type)} 
+            onSubmitForm={this.onSubmitForm}/>
           <Results
             books={this.state.books} />
 
