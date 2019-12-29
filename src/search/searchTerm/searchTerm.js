@@ -13,7 +13,6 @@ class searchTerm extends Component {
                 onChange={this.props.handleSearch}
                 />
                 <button type="submit">Search</button>
-                {/* need to configure button to show results onClick */}
             </div>
         )
     }
