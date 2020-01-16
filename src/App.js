@@ -8,6 +8,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      baseUrl: 'https://www.googleapis.com/books/v1/volumes?q=',
       query: "",
       printType: "all",
       bookType: "ebooks",
@@ -26,6 +27,7 @@ class App extends Component {
     this.setState({
       printType: e.target.value
     })
+    this.updateBookResults();
     // console.log(e.target.value)
   }
 
@@ -33,15 +35,13 @@ class App extends Component {
     this.setState({
       bookType: e.target.value
     })
+    this.updateBookResults()
     // console.log(e.target.value)
   }
 
-
-
-    onSubmitForm = (e) => {
-      e.preventDefault();
-      const baseUrl = 'https://www.googleapis.com/books/v1/volumes?q=';
-      const url = (`${baseUrl}${this.state.query}`)
+  updateBookResults = () => {
+    const url = (`${this.state.baseUrl}${this.state.query}&filter=${this.state.bookType}&printType=${this.state.printType}`)
+    console.log("updated", url)
       fetch(url)
       .then(response => response.json())
       .then(data => {
@@ -52,6 +52,24 @@ class App extends Component {
         
              
       });
+  }
+
+
+
+    onSubmitForm = (e) => {
+      e.preventDefault();
+      this.updateBookResults();
+      // const url = (`${this.state.baseUrl}${this.state.query}&filter=${this.state.bookType}&printType=${this.state.printType}`)
+      // fetch(url)
+      // .then(response => response.json())
+      // .then(data => {
+      //   this.setState({
+      //     books: [...data.items],
+      //     error: null
+      //   })
+        
+             
+      // });
     }
   
 
