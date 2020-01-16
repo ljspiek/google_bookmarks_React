@@ -23,41 +23,18 @@ class App extends Component {
 
 
   updatePrintType = (e) => {
-    // this.setState({
-    //   printType: e.target.value
-    // })
-    console.log("test")
+    this.setState({
+      printType: e.target.value
+    })
+    // console.log(e.target.value)
   }
 
   updateBookType = (e) => {
     this.setState({
       bookType: e.target.value
     })
-    console.log(e.target.value)
+    // console.log(e.target.value)
   }
-
-  // cleanData = (data) => {
-  //   const cleanedData = data.items.map((book) => {
-  //     if(book.volumeInfo.hasOwnProperty('imageLinks') === false) {
-  //       book.volumeInfo['imageLinks'] = { thumbnail: 'http://www.asuci.uci.edu/electionsimages/na.png'}
-  //     }
-
-  //     else if(book.volumeInfo.hasOwnProperty('authors') === false) {
-  //       book.volumeInfo['authors'] = "";
-  //     }
-
-  //     else if(book.saleInfo.saleability !== "FOR_SALE") {
-  //       book.saleInfo.listPrice['amount'] = "N/A";
-  //     }
-
-  //     else if (book.searchInfo.hasOwnProperty('textSnippet') === false) {
-  //       book.searchInfo['textSnippet'] = "";
-  //     }
-
-  //     return book;
-  //   })
-  //   return cleanedData;
-  // }
 
 
 
