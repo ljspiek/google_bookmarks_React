@@ -27,7 +27,7 @@ class App extends Component {
     this.setState({
       printType: e.target.value
     })
-    this.updateBookResults();
+    setTimeout(this.updateBookResults, 500)
     // console.log(e.target.value)
   }
 
@@ -35,8 +35,8 @@ class App extends Component {
     this.setState({
       bookType: e.target.value
     })
-    this.updateBookResults()
-    // console.log(e.target.value)
+    setTimeout(this.updateBookResults, 500);
+    console.log(e.target.value)
   }
 
   updateBookResults = () => {
@@ -53,6 +53,9 @@ class App extends Component {
              
       });
   }
+
+  
+  
 
 
 

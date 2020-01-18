@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 
 class Filter extends Component {
     render() {
-        console.log(this.props)
+        // console.log(this.props)
         return(
             <div className = "filter-bar">
             <label>Print Type:</label>
