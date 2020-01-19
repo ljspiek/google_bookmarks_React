@@ -45,10 +45,19 @@ class App extends Component {
       fetch(url)
       .then(response => response.json())
       .then(data => {
-        this.setState({
-          books: [...data.items],
-          error: null
-        })
+        if(data.totalItems){
+          this.setState({
+            books: [...data.items],
+            error: null
+          })
+        }
+        else {
+          this.setState({
+            error: "No results found"
+          })
+          alert("No results found")
+        }
+        
         
              
       });
